@@ -6,7 +6,7 @@ import yaml
 
 if len(sys.argv) != 5:
     print("Usage: python " + sys.argv[0] + " <input-dim> <output-dim> <num-layers> <output-path>")
-    sys.exit(0)
+    sys.exit(1)
 
 input_dims = int(sys.argv[1])
 output_dims = int(sys.argv[2])
@@ -16,7 +16,7 @@ output_path = sys.argv[4]
 assert input_dims > 0, "Input dimensions must be positive"
 assert output_dims > 0, "Output dimensions must be positive"
 assert num_layers > 0, "Number of layers must be positive"
-assert ~os.path.exists(output_path), output_path + " already exists"
+assert not os.path.exists(output_path), output_path + " already exists"
 
 out = []
 
