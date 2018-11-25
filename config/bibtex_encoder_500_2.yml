@@ -1,0 +1,13 @@
+- kwargs:
+    in_features: 1836
+    out_features: 1168
+  name: Linear
+- kwargs:
+    inplace: true
+    negative_slope: 0.2
+  name: LeakyReLU
+- kwargs:
+    in_features: 1168
+    out_features: 500
+  name: Linear
+- name: Sigmoid
