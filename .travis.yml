@@ -18,9 +18,9 @@ install:
   - conda info -a
   - conda create -q -n test-environment python=$TRAVIS_PYTHON_VERSION
   - source activate test-environment
-  - conda install -c anaconda flake8 
   - conda install --file requirements.txt
   - conda install pytorch-cpu -c pytorch
+  - conda install -c anaconda flake8  
 script:
   - flake8
   - python -c "import extreme_classification"
