@@ -24,18 +24,18 @@ diff_dims = output_dims - input_dims
 diff_per_layer = diff_dims / num_layers
 
 curr_dim = input_dims
-for l in range(num_layers):
+for layer_idx in range(num_layers):
     layer = {}
     layer['name'] = "Linear"
-    if l != num_layers - 1:
+    if layer_idx != num_layers - 1:
         layer['kwargs'] = {"in_features": curr_dim,
-                           "out_features": int(curr_dim + diff_per_layer * (l + 1))}
+                           "out_features": int(curr_dim + diff_per_layer * (layer_idx + 1))}
     else:
         layer['kwargs'] = {"in_features": curr_dim, "out_features": output_dims}
     out.append(layer)
-    if l != num_layers - 1:
+    if layer_idx != num_layers - 1:
         out.append({"name": "LeakyReLU", "kwargs": {"negative_slope": 0.2, "inplace": True}})
-    curr_dim = int(curr_dim + diff_per_layer * (l + 1))
+    curr_dim = int(curr_dim + diff_per_layer * (layer_idx + 1))
 out.append({"name": "Sigmoid"})
 
 print(yaml.dump(out, default_flow_style=False))
