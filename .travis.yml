@@ -20,6 +20,7 @@ install:
   - source activate test-environment
   - conda install -c anaconda flake8 
   - conda install --file requirements.txt
+  - conda install pytorch-cpu -c pytorch
 script:
   - flake8
   - python -c "import extreme_classification"
