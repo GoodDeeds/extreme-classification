@@ -29,13 +29,13 @@ for layer_idx in range(num_layers):
     layer['name'] = "Linear"
     if layer_idx != num_layers - 1:
         layer['kwargs'] = {"in_features": curr_dim,
-                           "out_features": int(curr_dim + diff_per_layer * (layer_idx + 1))}
+                           "out_features": int(input_dims + diff_per_layer * (layer_idx + 1))}
     else:
         layer['kwargs'] = {"in_features": curr_dim, "out_features": output_dims}
     out.append(layer)
     if layer_idx != num_layers - 1:
         out.append({"name": "LeakyReLU", "kwargs": {"negative_slope": 0.2, "inplace": True}})
-    curr_dim = int(curr_dim + diff_per_layer * (layer_idx + 1))
+    curr_dim = int(input_dims + diff_per_layer * (layer_idx + 1))
 out.append({"name": "Sigmoid"})
 
 print(yaml.dump(out, default_flow_style=False))
