@@ -3,10 +3,11 @@ python:
   - "2.7"
   - "3.5"
 
-matrix:
+jobs:
   include:
     - env: LINT_CHECK
       install: pip install flake8
       script:
         - flake8
+        - pip install -r requirements.txt
         - python -c "import extreme_classification"
